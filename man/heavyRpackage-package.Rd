@@ -8,6 +8,15 @@
 \description{
 Documentation à ajouter, tel fonction fait ceci
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/acolajanni/heavyRpackage}
+  \item \url{https://acolajanni.github.io/heavyRpackage/}
+  \item Report bugs at \url{https://github.com/acolajanni/heavyRpackage/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: First Last \email{first.last@example.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
 

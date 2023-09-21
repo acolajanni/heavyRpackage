@@ -57,13 +57,12 @@ mvnpdf = function(x ,  varcovM = diag(nrow(x)), mu = rep(0,nrow(varcovM)), Log=F
 
   determ = det(varcovM)
   inv = solve(varcovM)
-
-  v=list()
-  for (i in 1:ncol(x)) {
-    v[[i]] = gaussian_singleValue(x[,i,drop=FALSE], mu, varcovM ,compute_mat=FALSE, #[x,y, autres arguments] [] ==> functions
+  n = ncol(x)
+  v <- rep(NA, n)
+  for (i in 1:n) {
+    v[i] = gaussian_singleValue(x[,i,drop=FALSE], mu, varcovM ,compute_mat=FALSE, #[x,y, autres arguments] [] ==> functions
                                   determ=determ, inv=inv)
   }
-  v = unlist(v)
   if (Log){v=log(v)}
   res=list("x" = x, "y"= v )
   class(res) = "mvnpdf"
@@ -86,4 +85,30 @@ plot.mvnpdf <- function(x, ...) {
   plot(x$x, x$y, type = "l", ...)
 }
 
+#' @export
+mvnpdfoptim <- function(x, mean =  rep(0, nrow(x)),
+                        varcovM = diag(nrow(x)), Log=TRUE){
 
+  if(!is.matrix(x)){
+    x <- matrix(x, ncol=1)
+  }
+
+  n <- ncol(x)
+  p <- nrow(x)
+  x0 <- x-mean
+
+  Rinv <- backsolve(chol(varcovM), x=diag(p))
+  xRinv <- apply(X=x0, MARGIN=2, FUN=crossprod, y=Rinv)
+  logSqrtDetvarcovM <- sum(log(diag(Rinv)))
+
+  quadform <- apply(X=xRinv, MARGIN=2, FUN=crossprod)
+  y <- (-0.5*quadform + logSqrtDetvarcovM -p*log(2*pi)/2)
+
+  if(!Log){
+    y <- exp(y)
+  }
+
+  res <- list(x = x, y = y)
+  class(res) <- "mvnpdf"
+  return(res)
+}
