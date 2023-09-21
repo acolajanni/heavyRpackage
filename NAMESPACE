@@ -3,6 +3,7 @@
 S3method(plot,mvnpdf)
 export(mvnpdf)
 export(mvnpdfoptim)
+export(timesTwo)
 importFrom(Rcpp,sourceCpp)
 importFrom(graphics,plot)
 importFrom(mvtnorm,dmvnorm)
