@@ -13,5 +13,6 @@ Imports: mvtnorm
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-URL: https://github.com/acolajanni/heavyRpackage
+URL: https://github.com/acolajanni/heavyRpackage,
+    https://acolajanni.github.io/heavyRpackage/
 BugReports: https://github.com/acolajanni/heavyRpackage/issues
