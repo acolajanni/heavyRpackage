@@ -4,6 +4,8 @@
 # heavyRpackage
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/acolajanni/heavyRpackage/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/acolajanni/heavyRpackage/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of heavyRpackage is to …
